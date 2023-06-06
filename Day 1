@@ -1,0 +1,213 @@
+Set Matrix Zeros:-
+
+class Solution {
+public:
+    void setZeroes(vector<vector<int>>& matrix) {
+        int m =matrix.size();
+        int n = matrix[0].size();
+        int x =1;
+        int y =1;
+        for(int j=0;j<n;j++)
+        {
+            if(matrix[0][j]==0)x=0;
+            
+        }
+        
+        for(int i=0;i<m;i++)
+        {
+            if(matrix[i][0]==0)y=0;
+        }
+       
+            
+        for(int i=1;i<m;i++)
+        {
+            for(int j=1;j<n;j++)
+            {
+                if(matrix[i][j]==0)
+                {
+                    matrix[i][0]=0;
+                    matrix[0][j]=0;
+                }
+            }
+        }
+        
+        
+         for(int j=1;j<n;j++)
+        {
+           if(matrix[0][j]==0)
+           {
+               for(int i=1;i<m;i++)
+                   matrix[i][j]=0;
+           }
+        }
+        
+        for(int i=1;i<m;i++)
+        {
+            if(matrix[i][0]==0)
+            {
+                for(int j=0;j<n;j++)
+                    matrix[i][j]=0;
+            }
+        }
+        
+        if(y==0)
+        {
+            for(int i=0;i<m;i++)
+            {
+                matrix[i][0]=0;
+            }
+        }
+        
+         if(x==0)
+        {      
+             for(int j=0;j<n;j++)
+            matrix[0][j]=0;
+        
+        }
+        
+    }
+};
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Pascal's Triangle:-
+
+class Solution {
+public:
+    vector<vector<int>> generate(int numRows) {
+        int n = numRows;
+        vector<vector<int>> p;
+        
+        for(int i=0;i<n;i++){
+             vector<int> r(i+1,1);
+            for(int j=1;j<i;j++){
+                
+                r[j] = p[i-1][j] + p[i-1][j-1];
+
+                
+                
+                
+}
+            p.push_back(r);
+}
+        
+        return p;
+    }
+};
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	Next Permutation:-
+  class Solution {
+public:
+    void nextPermutation(vector<int>& nums) {
+        int n = nums.size();
+        int idx1 = 0;
+        for(int i=n-2;i>=0;i--){
+            if(nums[i]<nums[i+1]){
+                idx1 = i;
+                break;
+}
+        }
+        
+        int idx2 = 0;
+        if(idx1 < 0){
+             reverse(nums.begin(),nums.end());
+          }
+        else{
+            
+            
+            for(int i=n-1;i>=0;i--){
+                
+              if(nums[i]>nums[idx1]){
+                idx2 = i;
+                break;
+}
+        }
+            
+        }
+        
+        swap(nums[idx1],nums[idx2]);
+        
+        reverse(nums.begin()+idx1+1,nums.end());
+        
+    }
+};
+
+=-----------------------------------------------------------------------------------------------------------------------------------------------------------
+Kadane's Algorithm:-
+
+class Solution {
+public:
+    int maxSubArray(vector<int>& nums) {
+        int n = nums.size();
+        int sum = 0;
+        int mx = INT_MIN;
+        
+        for(int i=0;i<n;i++){
+            
+            sum = sum + nums[i];
+            mx = max(mx,sum);
+            
+            if(sum < 0)
+                sum = 0;
+}
+        
+        return mx;
+    }
+};
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+Sort an array of 0's, 1's and 2's:-
+
+class Solution {
+public:
+    
+    void swap(int &x,int &y){
+        int temp = x;
+        x = y;
+        y = temp;
+    }
+    
+    void sortColors(vector<int>& nums) {
+        int n = nums.size();
+        int Z = 0,O = 0,T = n-1;
+        
+        while(O<=T){
+            
+            if(nums[O]==0){
+                swap(nums[O],nums[Z]);
+                O++;
+                Z++;
+}
+            
+            else if(nums[O]==1){
+                O++;
+}
+            else{
+                swap(nums[O],nums[T]);
+                T--;
+            }
+        }
+        
+    }
+};
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Stock Buy and Sell:-
+class Solution {
+public:
+    int maxProfit(vector<int>& prices) {
+        int n = prices.size();
+        int mx = prices[n-1];
+        int mxp = 0;
+        for(int i = n-2;i>=0;i--){
+            
+            mx = max(mx,prices[i]);
+            mxp = max(mxp,mx-prices[i]);
+}
+        
+        return mxp;
+    }
+    --------------------------------------------------------------------------------------------------------------------------------------------
+                                      Finish..............................................................
